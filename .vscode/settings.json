@@ -1,0 +1,11 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "database": "${workspaceFolder:capm13}/db/datamodel.cds",
+            "name": "productdatamodel"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}
