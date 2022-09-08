@@ -1,0 +1,31 @@
+GET http://localhost:4004/CatalogService/$metadata
+
+###
+
+GET http://localhost:4004/CatalogService/EmployeeSet?$top=2
+
+###
+
+POST http://localhost:4004/CatalogService/EmployeeSet
+Content-Type: application/json
+
+{
+"nameFirst":"Minakshi",
+"nameMiddle":null,
+"nameLast":"Singh",
+"nameInitials":null,
+"sex":"F",
+"language":"E",
+"email":"mina@gmail.com",
+"loginName":"SPMINAK"
+}
+
+###
+
+PATCH  http://localhost:4004/CatalogService/EmployeeSet/c6909e3d-5899-4baa-9308-9f93f371c7b6
+Content-Type: application/json
+
+{
+    "salaryAmount" : "9000000",
+    "Currency_code" : "INR"
+}

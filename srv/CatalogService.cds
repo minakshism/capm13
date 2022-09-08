@@ -4,6 +4,7 @@ service CatalogService @(path:'CatalogService'){
     entity AddressSet as projection on master.address;
     entity ProductSet as projection on master.product;
     entity BPSet as projection on master.businesspartner;
+    @Capabilities : { Insertable, Updatable, Deletable, Readable}
     entity EmployeeSet as projection on master.employees;
 
     entity POs @(title : '{i18n>POHeader}') as projection on transaction.purchaseorder{
