@@ -95,7 +95,8 @@ context transaction {
             PARTNER_GUID: association to master.businesspartner;                      
             LIFECYCLE_STATUS: String(1);	
             OVERALL_STATUS: String(1);
-            Items: Composition of  many poitems on Items.PARENT_KEY = $self
+            Items: Composition of  many poitems on Items.PARENT_KEY = $self;
+            NOTE : String(200);
      }
 
      entity poitems: common.Amount, cuid {
