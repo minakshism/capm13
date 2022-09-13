@@ -1,5 +1,10 @@
+const cds = require("@sap/cds");
+
+
+
 module.exports = (srv)=>{
-    srv.before("UPDATE", 'EmployeeSet', (req) =>{
+    const {EmployeeSet, POs} = srv.entities;
+    srv.before("UPDATE", EmployeeSet, (req) =>{
         if(parseFloat(req.data.salaryAmount) > 90000.00){
             req.console.error("Salary more than 90k not allowed!");
             
@@ -7,13 +12,15 @@ module.exports = (srv)=>{
     });
 
     srv.on("boost", async(req)=>{
+        
         try{
             const ID = req.params[0];
             console.log(ID);
             const tx = cds.tx(req);
             await tx.update(POs).with({
-                GROSS_AMOUNT : round({ '+=' : 20000}, 2), NOTE : "Boosted!!"
-            });
+                GROSS_AMOUNT : { '+=' : 20000}, 
+                NOTE : "Boosted!!"
+            }).where({ID : ID});
 
             return "Boost is Successfull";
         }catch(err){
