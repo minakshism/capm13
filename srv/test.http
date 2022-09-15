@@ -77,3 +77,15 @@ GET http://localhost:4004/CatalogService/POs(02BD2137-0890-1EEA-A6C2-BB55C197899
 ###
 GET http://localhost:4004/CatalogService/POs(02BD2137-0890-1EEA-A6C2-BB55C1978999)/CatalogService.largestOrder()
 
+###
+GET http://localhost:4004/v2/CatalogService/POs(02BD2137-0890-1EEA-A6C2-BB55C1978999)
+
+##### calling custom actions for the entity with odata v2 model
+
+POST http://localhost:4004/v2/CatalogService/POs_boost?ID=02BD2137-0890-1EEA-A6C2-BB55C1978999
+Content-Type: application/json
+
+{}
+
+###
+GET http://localhost:4004/v2/CatalogService/POs_largestOrder?ID=02BD2137-0890-1EEA-A6C2-BB55C1978999
