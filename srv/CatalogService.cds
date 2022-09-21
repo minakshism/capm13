@@ -7,7 +7,7 @@ service CatalogService @(path:'CatalogService'){
     @Capabilities : { Insertable, Updatable, Deletable, Readable}
     entity EmployeeSet as projection on master.employees;
 
-    entity POs @(title : '{i18n>POHeader}') as projection on transaction.purchaseorder{
+    entity POs @(title : '{i18n>POHeader}', odata.draft.enabled : true) as projection on transaction.purchaseorder{
         *,
         round(GROSS_AMOUNT, 2) as GROSS_AMOUNT : Decimal(15,2),
         case LIFECYCLE_STATUS

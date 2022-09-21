@@ -72,6 +72,12 @@ annotate service.POs with @( UI : {
             Label : '{i18n>POGeneralInfo}',
             Target : ![@UI.FieldGroup#HeaderGeneralInfo]
         },
+
+        {
+            $Type : 'UI.ReferenceFacet',
+            Label : '{i18n>POItemDetails}',
+            Target : 'Items/@UI.LineItem'
+        }
         
     ],
     FieldGroup#HeaderGeneralInfo : {
@@ -109,4 +115,132 @@ annotate service.POs with @( UI : {
 
     }
 });
+
+annotate service.POItems with @( UI : {
+    LineItem  : [
+       {
+           $Type : 'UI.DataField',
+           Value : CURRENCY_CODE,
+       }, 
+       {
+           $Type : 'UI.DataField',
+           Value : TAX_AMOUNT,
+       },
+       {
+           $Type : 'UI.DataField',
+           Value : GROSS_AMOUNT,
+       },
+       {
+           $Type : 'UI.DataField',
+           Value : NET_AMOUNT,
+       },
+       {
+           $Type : 'UI.DataField',
+           Value : PRODUCT_GUID_NODE_KEY,
+       },
+       {
+           $Type : 'UI.DataField',
+           Value : PRODUCT_GUID.PRODUCT_ID,
+       },
+
+    ],
+    HeaderInfo  : {
+        $Type : 'UI.HeaderInfoType',
+        TypeName : 'Po Item',
+        TypeNamePlural : 'PO Items',
+        Title : {
+            $Type : 'UI.DataField',
+            Value : ID
+        },
+        Description : {
+            $Type : 'UI.DataField',
+            Value : PRODUCT_GUID.DESCRIPTION,
+        },
+    },
+    Facets  : [
+       {
+           Label : 'PO Item Header',
+           $Type : 'UI.ReferenceFacet',
+           Target : '@UI.FieldGroup#LineItemHeader',
+       }, 
+       {
+           Label : 'Product Details',
+           $Type : 'UI.ReferenceFacet',
+           Target : 'PRODUCT_GUID/@UI.FieldGroup#ProductDetails'
+       }
+    ],
+    FieldGroup#LineItemHeader  : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+             {
+                 $Type : 'UI.DataField',
+                 Value : ID,
+             },
+             {
+                 $Type : 'UI.DataField',
+                 Value : PRODUCT_GUID.DESCRIPTION,
+             },
+             {
+                 $Type : 'UI.DataField',
+                 Value : TAX_AMOUNT,
+             },
+             {
+                 $Type : 'UI.DataField',
+                 Value : PARENT_KEY.OVERALL_STATUS,
+             },
+             {
+                 $Type : 'UI.DataField',
+                 Value : CURRENCY_CODE,
+             },
+             {
+                 $Type : 'UI.DataField',
+                 Value : GROSS_AMOUNT ,
+             },
+        ]
+        
+    },
+}) ;
+
+annotate service.ProductSet with @( UI : {
+    FieldGroup#ProductDetails  : {
+        $Type : 'UI.FieldGroupType',
+        Label : 'Product Information',
+        Data : [
+            {
+                $Type : 'UI.DataField',
+                Value : CATEGORY,
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : DEPTH,
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : PRODUCT_ID,
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : WEIGHT_MEASURE,
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : SUPPLIER_GUID.COMPANY_NAME,
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : NODE_KEY,
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : SUPPLIER_GUID.EMAIL_ADDRESS ,
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : SUPPLIER_GUID.PHONE_NUMBER,
+            },
+        ]
+    },
+});
+
+
 
