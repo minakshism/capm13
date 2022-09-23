@@ -2,12 +2,46 @@ using CatalogService as service from '../../srv/CatalogService';
 
 //
 
+annotate service.POs with {
+    PARTNER_GUID@(
+        Common : {
+            Text : PARTNER_GUID.COMPANY_NAME
+        },
+        ValueList.entity : service.BPSet
+    )
+} ;
+
+annotate service.POItems with {
+    PRODUCT_GUID@(
+        Common : {
+            Text : PRODUCT_GUID.DESCRIPTION
+        },
+        ValueList.entity : service.ProductSet
+    )
+};
+
+
+@cds.odata.valuelist
+annotate service.BPSet with @( UI.Identification : [{
+    $Type : 'UI.DataField',
+    Value : COMPANY_NAME
+}]);
+@cds.odata.valuelist
+annotate service.ProductSet with @( UI.Identification: [
+    {
+        $Type : 'UI.DataField',
+        Value : PRODUCT_ID
+    }
+]);
+
+
+
 annotate service.POs with @( UI : {
     SelectionFields  : [
         PO_ID,
         GROSS_AMOUNT,
         LIFECYCLE_STATUS,
-        CURRENCY_CODE
+        CURRENCY_code
     ],
     LineItem  : [
         {
@@ -33,7 +67,7 @@ annotate service.POs with @( UI : {
         },
         {
             $Type : 'UI.DataField',
-            Value : CURRENCY_CODE,
+            Value : CURRENCY.code,
         },
         {
             $Type : 'UI.DataField',
@@ -97,6 +131,10 @@ annotate service.POs with @( UI : {
                 },
                 {
                     $Type : 'UI.DataField',
+                    Value : Items.PRODUCT_GUID.PRODUCT_ID,
+                },
+                {
+                    $Type : 'UI.DataField',
                     Value : LIFECYCLE_STATUS,
                 },
                 {
@@ -109,7 +147,7 @@ annotate service.POs with @( UI : {
                 },
                 {
                     $Type : 'UI.DataField',
-                    Value : CURRENCY_CODE,
+                    Value : CURRENCY_code,
                 },
             ]
 
@@ -120,7 +158,7 @@ annotate service.POItems with @( UI : {
     LineItem  : [
        {
            $Type : 'UI.DataField',
-           Value : CURRENCY_CODE,
+           Value : CURRENCY_code,
        }, 
        {
            $Type : 'UI.DataField',
@@ -190,7 +228,7 @@ annotate service.POItems with @( UI : {
              },
              {
                  $Type : 'UI.DataField',
-                 Value : CURRENCY_CODE,
+                 Value : CURRENCY_code,
              },
              {
                  $Type : 'UI.DataField',
