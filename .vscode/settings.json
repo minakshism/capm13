@@ -1,10 +1,11 @@
 {
     "sqltools.connections": [
         {
-            "previewLimit": 50,
-            "driver": "SQLite",
-            "database": "${workspaceFolder:capm13}/db/datamodel.cds",
-            "name": "productdatamodel"
+            "dialect": "SQLite",
+            "name": "capm13",
+            "database": "/home/user/projects/capm13/minakshi.db",
+            "isActive": false,
+            "isConnected": false
         }
     ],
     "sqltools.useNodeRuntime": true
