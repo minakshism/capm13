@@ -1,6 +1,51 @@
 {
-  "scopes": [],
-  "attributes": [],
-  "role-templates": [],
+    "xsappname" : "CAPM13",
+    "tenant-mode" : "dedicated",
+  "scopes": [
+    {
+          "name" : "$XSAPPName.Viewer",
+          "description" : "Viewer"
+    },
+    {
+        "name" : "$XSAPPName.Admin",
+        "description" : "Administrator"
+    }
+  ],
+  "attributes": [
+      {
+          "name" : "BankName",
+          "description" : "BankName",
+          "valueType" : "string"
+      }
+  ],
+  "role-templates": [
+      {
+          "name" : "$XSAPPName.Viewer" ,
+          "description": "Viewer",
+          "attribute-references" : [
+              {"name" : "BankName" }
+          ],
+          "scope-references" : [
+              "$XSAPPName.Viewer"
+          ]
+      },
+      {
+          "name" : "$XSAPPName.Admin",
+          "description" : "Administrator",
+          "scope-references" : [
+              "$XSAPPName.Admin"
+          ]
+      }
+  ],
+  "role-collections" : [
+      {
+        "name" : "app_Administrator",
+        "description" : "Administrative Access",
+        "role-teplate-references" : [
+            "$XSAPPName.Admin"
+        ]
+
+      }
+  ],
   "authorities-inheritance": false
 }

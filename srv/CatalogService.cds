@@ -1,11 +1,22 @@
 using { minakshi.db.master, minakshi.db.transaction } from '../db/datamodel';
 
-service CatalogService @(path:'CatalogService'){
+service CatalogService @(path:'CatalogService')
+@(requires : 'authenticated-user'){
     entity AddressSet as projection on master.address;
     entity ProductSet as projection on master.product;
     entity BPSet as projection on master.businesspartner;
     @Capabilities : { Insertable, Updatable, Deletable, Readable}
-    entity EmployeeSet as projection on master.employees;
+    entity EmployeeSet @(restrict : [
+        {
+            grant : ['READ'],
+            to : 'Viewer',
+            where : 'bankName = $user.BankName'
+        },
+        {
+            grant : ['WRITE'],
+            to : 'Admin'
+        }
+    ]) as projection on master.employees;
 
     entity POs @(title : '{i18n>POHeader}', odata.draft.enabled : true) as projection on transaction.purchaseorder{
         *,

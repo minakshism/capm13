@@ -12,9 +12,8 @@
     "deploy-config": "npx -p @sap/ux-ui5-tooling fiori add deploy-config cf",
     "start": "node node_modules/@sap/approuter/approuter.js"
   },
-  "devDependencies": {},
   "dependencies": {
-    "@sap/approuter": "^11.0.0"
+    "@sap/approuter": "^11.5.0"
   },
   "engines": {
     "node": "^16"
