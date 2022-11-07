@@ -1,5 +1,5 @@
 GET http://localhost:4004/CatalogService/$metadata
-
+Authorization: Basic rishi:1234
 ###
 
 GET http://localhost:4004/CatalogService/EmployeeSet?$top=2
